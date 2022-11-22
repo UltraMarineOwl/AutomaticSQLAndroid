@@ -303,7 +303,6 @@ public class MainActivity extends Activity {
 //                + "inner join detbord as DetB "
 //                + "on DetB.studid=ST.studid "
 //                + "where Exam > ?";
-
 //        studLista1= "select ST.studid as StId, ST.studn AS SdN, DetB.exa as Exam, DetB.reu as Reus,  "
 //                + "DCP.discn as disc,  ST.studid as GR, SP.spn as SpN  "
 //                + "from stlista as ST , disc as DCP, spec as SP "
