@@ -249,6 +249,29 @@ public class MainActivity extends Activity {
         }//  end of for(int i=0;i<numberOfTables;i++)
 
     }
+
+    public ArrayList<String> read_SQL(String sqlRead){
+        dbHelper = new DBHelper(this, DBName);
+        db = dbHelper.getWritableDatabase();
+        Cursor Query = null;
+        try{
+            Query = db.rawQuery(sqlRead, null);
+        } catch (SQLException e){
+            Log.d("Error in sql querry", sqlRead);
+            return null;
+        }
+        ArrayList<String> res = new ArrayList<>();
+        String str = "";
+        while(Query.moveToNext()){
+            str="";
+            for (String countNext : Query.getColumnNames()){
+                str = str.concat(Query.getString((int) Query.getColumnIndex(countNext)) + ";\t");
+            }
+            res.add(str);
+        }
+        return res;
+    }
+
     public void studL(View v)
     {
         String studLista="SELECT latitude, longitude, COUNT(*) count"+
@@ -301,12 +324,6 @@ public class MainActivity extends Activity {
                 + " and prov.name is not 2 "
                 + " and user.name is not 2 ";
 
-//        studLista1 = "SELECT " + et2.getText() + " FROM " +  et1.getText() + " WHERE "
-//                + et3.getText()+ " ;";
-//        tv.setText("");
-//        tv.append(studLista1 + "\n\n");
-        
-
         Cursor c;
         c=null;
         // c = db.rawQuery(studLista1, new String[] {"600"});
@@ -318,6 +335,15 @@ public class MainActivity extends Activity {
         Log.d("End Lista", "End Lista");
         txtData.setText("Example of Conditions: " +whereC );
         // txtData.append(whereV);
+
+        String studLista = "SELECT " + et2.getText() + " FROM " +  et1.getText() + " WHERE " + et3.getText()+ " ;";
+        // String studLista = "SELECT * FROM charaM ";
+        tv.setText("");
+        tv.append(studLista + "\n\n");
+        ArrayList<String> ret = read_SQL(studLista);
+        for(String s : ret){
+            tv.append(s+"/n");
+        }
 
     }
 
@@ -480,31 +506,35 @@ public class MainActivity extends Activity {
         });
 
     }
+
+
     public void ReadSQL(View v)
     {
-        String aDataRow = "";
-        String aBuffer = "";
-        // fn="query4";
-        try {
 
-            //File myFile = new File("/storage/extSdCard/wherec.txt");
-            File myFile = new File("/mnt/sdcard/download1/wherec.txt");
-            FileInputStream fIn = new FileInputStream(myFile);
-            BufferedReader myReader = new BufferedReader(
-                    new InputStreamReader(fIn));
-
-            while ((aDataRow = myReader.readLine()) != null) {
-                aBuffer += aDataRow + "\n";
-            }
-            //tv.setText(aBuffer);
-            myReader.close();
-            Toast.makeText(getBaseContext(),"Done reading SD 'MMMM.txt'",Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(getBaseContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
-        }
-        sqlprop = aBuffer.split("\n");
-        Log.d("SQL=","valoare=" +sqlprop[0]);
+//        String aDataRow = "";
+//        String aBuffer = "";
+//        // fn="query4";
+//        try {
+//
+//            //File myFile = new File("/storage/extSdCard/wherec.txt");
+//            File myFile = new File("/mnt/sdcard/download1/wherec.txt");
+//            FileInputStream fIn = new FileInputStream(myFile);
+//            BufferedReader myReader = new BufferedReader(
+//                    new InputStreamReader(fIn));
+//
+//            while ((aDataRow = myReader.readLine()) != null) {
+//                aBuffer += aDataRow + "\n";
+//            }
+//            //tv.setText(aBuffer);
+//            myReader.close();
+//            Toast.makeText(getBaseContext(),"Done reading SD 'MMMM.txt'",Toast.LENGTH_SHORT).show();
+//        } catch (Exception e) {
+//            Toast.makeText(getBaseContext(), e.getMessage(),Toast.LENGTH_SHORT).show();
+//        }
+//        sqlprop = aBuffer.split("\n");
+//        Log.d("SQL=","valoare=" +sqlprop[0]);
         // fill spinner2
+
 
 
     }
