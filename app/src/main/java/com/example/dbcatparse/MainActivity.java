@@ -274,67 +274,67 @@ public class MainActivity extends Activity {
 
     public void studL(View v)
     {
-        String studLista="SELECT latitude, longitude, COUNT(*) count"+
-                "FROM tasks  "
-                + " GROUP BY latitude, longitude "
-                +  "HAVING count >1 1";
-
-        dbHelper = new DBHelper(this, DBName);
-        db = dbHelper.getWritableDatabase();
-        Log.d("Create DB=","The DB " +DBName+ "  was created OR Opened the exiting one!");
-        Log.d("Group By", "--- INNER JOIN with rawQuery---");
-
-        String sqlQuery = "select PL.name as Name, PS.name as Position, salary as Salary "
-                + "from people as PL "
-                + "inner join position as PS "
-                + "on PL.posid = PS.id "
-                + "where salary > ?";
-        int v1=7,v2=8;
-        String vv1=String.valueOf(v1);
-        String vv2=String.valueOf(v2);
-        String vv3="prof3", vv4="prof2";
-
-        // String whereV="Ex > " + vv1 + "  and  Re > " + vv2 + " and ( PF=" +vv3 + "  or PF = " + vv4 +")";
-        //  String [] s1=et.getText().toString().split("\n");
-        // String [] s2=s1[2].split(";");
-        String  whereC=et1.getText().toString().trim();
-        String  whereV=et3.getText().toString().trim();
-
-        whereV=whereV.replace(" ", "");
-        String [] s2=whereV.split(";");
-        //vv1=s2[0].trim(); vv2=s2[1].trim(); vv3=s2[2].trim(); vv4=s2[3].trim();
-        // String []  val =new String[4];
-        int np=s2.length;
-        //whereC=s1[0];
-        Log.d("Numar de parametri","parametri= "+np);
-        Log.d("WhereC=","whereC= "+whereC  );
-        Log.d("WhereV=","whereV= "+whereV  );
-        // Log.d("WhereC=","whereV= "+whereV+  "  , v1="+s2[0]+" ,  v2="+s2[1]);
-        for (int j=0;j<np;j++)
-            s2[j]=s2[j].trim();
-
-
-        String studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname, user.name as uname "
-                + "from mainM AS main, charaM as chara, provM as prov, siteM as site  "
-                + "inner join userM as user "
-                + "on main.userID = user.userID "
-                + "and main.provID = prov.provID "
-                + "and main.siteID = site.siteID "
-                + " where main.prodID < 4 and main.quality is not 2 and chara.name is not 2"
-                + " and prov.name is not 2 "
-                + " and user.name is not 2 ";
-
-        Cursor c;
-        c=null;
-        // c = db.rawQuery(studLista1, new String[] {"600"});
-//        c = db.rawQuery(studLista1, s2);
-        c = db.rawQuery(studLista1, null);
-        // c = db.rawQuery(studLista1, null);
-        logCursor1(c);
-        c.close();
-        Log.d("End Lista", "End Lista");
-        txtData.setText("Example of Conditions: " +whereC );
-        // txtData.append(whereV);
+//        String studLista="SELECT latitude, longitude, COUNT(*) count"+
+//                "FROM tasks  "
+//                + " GROUP BY latitude, longitude "
+//                +  "HAVING count >1 1";
+//
+//        dbHelper = new DBHelper(this, DBName);
+//        db = dbHelper.getWritableDatabase();
+//        Log.d("Create DB=","The DB " +DBName+ "  was created OR Opened the exiting one!");
+//        Log.d("Group By", "--- INNER JOIN with rawQuery---");
+//
+//        String sqlQuery = "select PL.name as Name, PS.name as Position, salary as Salary "
+//                + "from people as PL "
+//                + "inner join position as PS "
+//                + "on PL.posid = PS.id "
+//                + "where salary > ?";
+//        int v1=7,v2=8;
+//        String vv1=String.valueOf(v1);
+//        String vv2=String.valueOf(v2);
+//        String vv3="prof3", vv4="prof2";
+//
+//        // String whereV="Ex > " + vv1 + "  and  Re > " + vv2 + " and ( PF=" +vv3 + "  or PF = " + vv4 +")";
+//        //  String [] s1=et.getText().toString().split("\n");
+//        // String [] s2=s1[2].split(";");
+//        String  whereC=et1.getText().toString().trim();
+//        String  whereV=et3.getText().toString().trim();
+//
+//        whereV=whereV.replace(" ", "");
+//        String [] s2=whereV.split(";");
+//        //vv1=s2[0].trim(); vv2=s2[1].trim(); vv3=s2[2].trim(); vv4=s2[3].trim();
+//        // String []  val =new String[4];
+//        int np=s2.length;
+//        //whereC=s1[0];
+//        Log.d("Numar de parametri","parametri= "+np);
+//        Log.d("WhereC=","whereC= "+whereC  );
+//        Log.d("WhereV=","whereV= "+whereV  );
+//        // Log.d("WhereC=","whereV= "+whereV+  "  , v1="+s2[0]+" ,  v2="+s2[1]);
+//        for (int j=0;j<np;j++)
+//            s2[j]=s2[j].trim();
+//
+//
+//        String studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname, user.name as uname "
+//                + "from mainM AS main, charaM as chara, provM as prov, siteM as site  "
+//                + "inner join userM as user "
+//                + "on main.userID = user.userID "
+//                + "and main.provID = prov.provID "
+//                + "and main.siteID = site.siteID "
+//                + " where main.prodID < 4 and main.quality is not 2 and chara.name is not 2"
+//                + " and prov.name is not 2 "
+//                + " and user.name is not 2 ";
+//
+//        Cursor c;
+//        c=null;
+//        // c = db.rawQuery(studLista1, new String[] {"600"});
+////        c = db.rawQuery(studLista1, s2);
+//        c = db.rawQuery(studLista1, null);
+//        // c = db.rawQuery(studLista1, null);
+//        logCursor1(c);
+//        c.close();
+//        Log.d("End Lista", "End Lista");
+//        txtData.setText("Example of Conditions: " +whereC );
+//        // txtData.append(whereV);
 
         String studLista = "SELECT " + et2.getText() + " FROM " +  et1.getText() + " WHERE " + et3.getText()+ " ;";
         // String studLista = "SELECT * FROM charaM ";
@@ -342,7 +342,7 @@ public class MainActivity extends Activity {
         tv.append(studLista + "\n\n");
         ArrayList<String> ret = read_SQL(studLista);
         for(String s : ret){
-            tv.append(s+"/n");
+            tv.append(s+"\n");
         }
 
     }
