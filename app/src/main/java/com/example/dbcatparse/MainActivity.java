@@ -291,99 +291,7 @@ public class MainActivity extends Activity {
             s2[j]=s2[j].trim();
 
 
-        String studLista1="SELECT NumeS, StudId, COUNT(*) as count "+
-                "FROM stud  "
-                + " GROUP BY NumeS, StudId "
-                +  " HAVING count> ?";
-        // studLista1 = "select StudId, Spec, NumeS, Disc1 "  + "from stud " + "where Disc1 > ?";
-        //  studLista1="SELECT NumeS, Disc1 "+ 	"FROM stud  "+ " GROUP BY NumeS " +  " where Disc1 > ?";
-        //  studLista1="SELECT NumeS, Disc1 "+ 	"FROM stud  "+ " GROUP BY NumeS ";
-//        studLista1= "select ST.studid as StId, ST.studn AS SdN, DetB.exa as Exam, DetB.reu as Reus, DetB.discid as disc "
-//                + "from stlista as ST "
-//                + "inner join detbord as DetB "
-//                + "on DetB.studid=ST.studid "
-//                + "where Exam > ?";
-//        studLista1= "select ST.studid as StId, ST.studn AS SdN, DetB.exa as Exam, DetB.reu as Reus,  "
-//                + "DCP.discn as disc,  ST.studid as GR, SP.spn as SpN  "
-//                + "from stlista as ST , disc as DCP, spec as SP "
-//                + "inner join detbord as DetB "
-//                + "on DetB.studid=ST.studid AND "
-//                + "DetB.discid=DCP.discid "
-//                + "where Exam > ?";
-//
-//        studLista1= "select ST.studid as StId, ST.studn AS SdN, DetB.exa as Exam, DetB.reu as Reus,  "
-//                + "DCP.discn as DIS, BRD.datac as Dat,  ST.grupa as GR, SP.spn as SpN    "
-//                + " from   stlista as ST , detbord as DetB, disc as DCP, bord as BRD, spec as SP " +
-//                "inner join detbord   on DetB.studid = ST.studid   "
-//                +" inner join detbord  on DetB.discid = DCP.discid  "
-//                +" inner join detbord on DetB.bordid = BRD.bordid "
-//                +"    inner join stlista on ST.spid = SP.spid "
-//                + " where Exam > ?";
-//        studLista1= "select ST.studid as StId, ST.studn AS SdN, DetB.exa as Exam, DetB.reu as Reus,  "
-//                + " ST.grupa as GR ,  DCP.discn as disc  "
-//                + " from   stlista as ST , detbord as DetB " +
-//                " inner join detbord   on DetB.studid = ST.studid   "
-//
-//                + " where Exam > ?";
-//
-//        studLista1= "select  BRD.datac as DT , SP.spn as SP, "
-//                +"   BRD.semid as SEM , DCP.discn as DIS, PRF.profn as PF , BRD.grupa as GR,"
-//                +" ST.studid as StId, ST.studn AS SdN,"
-//                +" DetB.te1 as te1, DetB.te2 as te2, DetB.ind as ind,DetB.reu as Re, DetB.exa as Ex , DetB.ng as NF "
-//                //+" DetB.exa * '0.4' + DetB.reu * '0.2' + DetB.ind * '0.1' + DetB.te2 * '0.15' + DetB.te1 * '0.15' "
-//                //+ DetB.reu * '0.2' + DetB.ind * '0.1' + DetB.te2 * '0.15' DetB.te1 * '0.15' "
-//
-//
-//                + " from stlista as ST , disc as DCP, spec as SP, bord as BRD, prof as PRF "
-//
-//                + "inner join detbord as DetB "
-//                + "on DetB.studid=ST.studid AND "
-//                + "DetB.discid=DCP.discid AND "
-//
-//                + "  ST.spid=SP.spid AND "
-//                + "DetB.bordid=BRD.bordid AND "
-//                + "BRD.profid=PRF.profid "
-//
-//                + "where  " + whereC;
-
-//        studLista1= "select PR.prid as ProdID, PR.prn AS ProdN,PR.price AS PPrice, SM.quants as SQuant "
-//                + "from ProductsM as PR "
-//                + "inner join SalesM as SM "
-//                + "on SM.prid=PR.prid "
-//                + "where " +whereC;
-
-     /*   studLista1= "select PR.prid as ProdID, PR.prn AS ProdN,PR.price AS PPrice, SM.quants as SQuant, CM.cName as Cname, FM.fName as Fname "
-                + "from ProductsM as PR, ClientM as CM, FurnizorM as FM "
-                + "inner join SalesM as SM "
-                + "on SM.prid=PR.prid "
-                + "where " +whereC;
-
-        studLista1= "select main.quality AS qual, user.age as uage, chara.name as cname, chara.assets as bb "
-                + "from mainM AS main, charaM as chara, userM as user "
-                + "inner join provM as prov "
-                + "on prov.provID=main.prodID "
-                + "where " +whereC;
-
-        studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname "
-                + "from mainM AS main, charaM as chara, userM as user, provM as prov "
-                + "inner join prov "
-                + "on prov.provID = main.prodID ";*/
-//                + "inner join siteM as site "
-//                + "on site.siteID = main.siteID ";
-
-//        studLista1= "select prov.name as Pname ,main.quality AS qual, user.age as uage, chara.name as cname, chara.assets as bb "
-//                + "from mainM as main, charaM as chara, userM as user, provM as prov ";
-
-//        studLista1 = "select * from provM";
-
-        studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname "
-                + "from mainM AS main, charaM as chara, provM as prov "
-                + "inner join userM as user "
-//                + "on user.userID = main.userID "
-                + " USING(userID) "
-                + "where main.prodID < 4" ;
-
-        studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname, user.name as uname "
+        String studLista1= "select main.prodID as ID, main.quality AS qual, chara.name as cname, prov.name as pname, user.name as uname "
                 + "from mainM AS main, charaM as chara, provM as prov, siteM as site  "
                 + "inner join userM as user "
                 + "on main.userID = user.userID "
@@ -397,13 +305,7 @@ public class MainActivity extends Activity {
 //                + et3.getText()+ " ;";
 //        tv.setText("");
 //        tv.append(studLista1 + "\n\n");
-
-
-        String sqlQuery3 = "select PL.name as Name, PS.name as Position, salary as Salary "
-                + "from people as PL "
-                + "inner join position as PS "
-                + "on PL.posid = PS.id "
-                + "where salary > ?";
+        
 
         Cursor c;
         c=null;
