@@ -42,7 +42,7 @@ public class MainActivity extends Activity {
     String [] data2=new String[50];
     public String[] sqlprop;
     public String[] wd;
-    EditText et1,et2,et3;
+    EditText et1,et2,et3, et4;
     EditText txtData;
     Button btnWriteSDFile;
     Button btnReadSDFile;
@@ -72,15 +72,20 @@ public class MainActivity extends Activity {
         et1=(EditText)findViewById(R.id.editText1);
         et2=(EditText)findViewById(R.id.editText2);
         et3=(EditText)findViewById(R.id.editText3);
+        et4=(EditText)findViewById(R.id.editText4);
         tv.setMovementMethod(new ScrollingMovementMethod());
         String whereC="  NF > ?  OR PF=? ";
 //        whereC="  ProdID > ?  OR uage> ? ";
-        whereC="  ProdID < 4 ";
+       // whereC="  ProdID < 4 ";
+        whereC="  datab";
         //whereC = " and user.name is not 2 ";
-        String whereV=" 1; ";
+        String whereV=" cond ";
         et1.setText(whereC);
-        et2.setText("Editable Values for Restriction(s):  " );
+        //et2.setText("Editable Values for Restriction(s):  " );
+        et2.setText("sel " );
         et3.setText(whereV);
+        et4.setText("Message: ");
+
         cc[1][1]="11"; cc[1][2]="12";
         cc1=cc;
         Log.d(" cc=cc1", "cc[1][1]=  " + cc1[1][1] + "cc[1][2]=  " + cc1[1][2]);
@@ -266,6 +271,7 @@ public class MainActivity extends Activity {
             str="";
             for (String countNext : Query.getColumnNames()){
                 str = str.concat(Query.getString((int) Query.getColumnIndex(countNext)) + ";\t");
+                //System.out.println(Query.getColumnNames());
             }
             res.add(str);
         }
@@ -336,13 +342,17 @@ public class MainActivity extends Activity {
 //        txtData.setText("Example of Conditions: " +whereC );
 //        // txtData.append(whereV);
 
-        String studLista = "SELECT " + et2.getText() + " FROM " +  et1.getText() + " WHERE " + et3.getText()+ " ;";
-        // String studLista = "SELECT * FROM charaM ";
-        tv.setText("");
-        tv.append(studLista + "\n\n");
-        ArrayList<String> ret = read_SQL(studLista);
-        for(String s : ret){
-            tv.append(s+"\n");
+        try {
+            String studLista = "SELECT " + et2.getText() + " FROM " + et1.getText() + " WHERE " + et3.getText() + " ;";
+            // String studLista = "SELECT * FROM charaM ";
+            tv.setText("");
+            tv.append(studLista + "\n\n");
+            ArrayList<String> ret = read_SQL(studLista);
+            for (String s : ret) {
+                tv.append(s + "\n");
+            }
+        } catch (Exception e){
+            et4.setText("Incorrect data");
         }
 
     }

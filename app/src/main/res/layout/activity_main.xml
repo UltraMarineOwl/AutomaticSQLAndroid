@@ -49,12 +49,31 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
- <TextView
-     android:id="@+id/textView1"
-     android:layout_width="match_parent"
-     android:layout_height="150dp"
-     android:text="@string/hello_world" />
-       
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:gravity="center"
+            android:text="Edit" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:autoSizeMinTextSize="12sp"
+            android:text="@string/hello_world" />
+
+        <EditText
+            android:id="@+id/editTextTextPersonName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName"
+            android:text="FROM DataBase: " />
+
         <EditText
             android:id="@+id/editText1"
             android:layout_width="match_parent"
@@ -64,7 +83,17 @@
 
         <requestFocus />
     </EditText>
-<EditText
+
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:inputType="textPersonName"
+            android:text="SELECT tables:" />
+
+        <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +102,16 @@
 
         <requestFocus />
     </EditText>
+
+        <EditText
+            android:id="@+id/editTextTextPersonName3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:gravity="center_horizontal"
+            android:text="Condition 'example' " />
+
     <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
